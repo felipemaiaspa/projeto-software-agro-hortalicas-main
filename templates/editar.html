@@ -1,29 +1,163 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Registro - Agro</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Registo - AgroHorti</title>
+    
+    <!-- Fonte Moderna do Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Caso uses um ficheiro CSS externo futuramente, podes manter esta linha descomentada -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+
+    <style>
+        :root {
+            --cor-primaria: #2D6A4F;
+            --cor-secundaria: #40916C;
+            --cor-fundo: #F4F4F9;
+            --cor-texto: #333333;
+            --cor-branco: #FFFFFF;
+            --sombra-suave: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .card {
+            background-color: var(--cor-branco);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--sombra-suave);
+            border-top: 6px solid var(--cor-primaria);
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--cor-primaria);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: var(--cor-primaria);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-cancel {
+            background-color: transparent;
+            color: #666;
+            border: 1px solid #ccc;
+        }
+
+        .btn-cancel:hover {
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .btn-save {
+            background-color: var(--cor-primaria);
+            color: var(--cor-branco);
+        }
+
+        .btn-save:hover {
+            background-color: var(--cor-secundaria);
+            transform: translateY(-1px);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>✏️ Editar Registro #{{ registro.id }}</h1>
         <div class="card">
-           <form action="{{ url_for('editar', id=registro.id) }}" method="POST">
-                <label>Talhão:</label>
-                <input type="text" name="talhao" value="{{ registro.talhao }}" required>
+            <h1>✏️ Editar Registo #{{ registro.id }}</h1>
+            
+            <form action="{{ url_for('editar', id=registro.id) }}" method="POST">
                 
-                <label>Cultura:</label>
-                <input type="text" name="cultura" value="{{ registro.cultura }}" required>
+                <div class="form-group">
+                    <label>Talhão</label>
+                    <input type="text" name="talhao" value="{{ registro.talhao }}" required placeholder="Ex: T-01">
+                </div>
                 
-                <label>Área (ha):</label>
-                <input type="number" step="0.01" name="area_ha" value="{{ registro.area_ha }}" required>
+                <div class="form-group">
+                    <label>Cultura</label>
+                    <input type="text" name="cultura" value="{{ registro.cultura }}" required placeholder="Ex: Soja">
+                </div>
                 
-                <label>Dosagem (L/ha):</label>
-                <input type="number" step="0.01" name="dosagem_l_ha" value="{{ registro.dosagem_l_ha }}" required>
+                <div class="form-group">
+                    <label>Área (ha)</label>
+                    <input type="number" step="0.01" name="area_ha" value="{{ registro.area_ha }}" required placeholder="Ex: 50.5">
+                </div>
                 
-                <button type="submit">Salvar Alterações</button>
-                <a href="{{ url_for('index') }}" class="btn-cancel">Cancelar</a>
+                <div class="form-group">
+                    <label>Dosagem (L/ha)</label>
+                    <input type="number" step="0.01" name="dosagem_l_ha" value="{{ registro.dosagem_l_ha }}" required placeholder="Ex: 2.5">
+                </div>
+                
+                <div class="form-actions">
+                    <a href="{{ url_for('index') }}" class="btn btn-cancel">Cancelar</a>
+                    <button type="submit" class="btn btn-save">Salvar Alterações</button>
+                </div>
+                
             </form>
         </div>
     </div>

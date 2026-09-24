@@ -15,5 +15,5 @@ Aplicação web em Flask para cadastro, cálculo de volume de calda e gerenciame
 * **Ações (CRUD):** Botões para editar e excluir registros existentes.
 
 ## 🔗 Links do Projeto
-* **Repositório GitHub:** https://github.com/Cacudo/projeto-software-agro-hortalicas
-* **Aplicação Online:** https://Endrew157.pythonanywhere.com
+* **Repositório GitHub:** 
+* **Aplicação Online:** 
