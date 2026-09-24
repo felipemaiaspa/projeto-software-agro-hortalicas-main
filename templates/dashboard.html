@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AgroHorti</title>
+    <!-- Cartão 3: Importar a biblioteca Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Cartão 2: Estilização básica CSS -->
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            background-color: #f4f4f9; 
+            margin: 0;
+            padding: 20px;
+        }
+        .grafico-container { 
+            width: 80%; 
+            max-width: 800px;
+            margin: 30px auto; 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cartão 1: Estrutura Base HTML -->
+    <h1>Visão Geral do Stock</h1>
+
+    <div class="grafico-container">
+        <canvas id="meuGrafico"></canvas>
+    </div>
+
+    <script>
+        // Cartão 4: Geração de Dados Fictícios
+        const hortalicas = ['Tomates', 'Alfaces', 'Cenouras', 'Batatas', 'Cebolas'];
+        const quantidadesKg = [150, 85, 120, 300, 90];
+
+        // Cartão 5: Renderização Visual do Gráfico
+        const ctx = document.getElementById('meuGrafico').getContext('2d');
+        
+        new Chart(ctx, {
+            type: 'bar', // Podes alterar para 'pie' (circular) ou 'line' (linha)
+            data: {
+                labels: hortalicas,
+                datasets: [{
+                    label: 'Quantidade em Kg',
+                    data: quantidadesKg,
+                    backgroundColor: [
+                        '#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+</body>
+</html>
