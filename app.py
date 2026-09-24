@@ -15,6 +15,13 @@ registros = [
 ]
 proximo_id = 2
 
+# --- NOVA ROTA: DASHBOARD ---
+@app.route('/dashboard')
+def dashboard():
+    # Esta rota carrega a nossa nova página de gráficos e KPIs
+    return render_template('dashboard.html')
+
+# --- ROTA: LISTAGEM E CADASTRO (index.html) ---
 @app.route('/')
 def index():
     return render_template('index.html', registros=registros)
@@ -43,6 +50,7 @@ def cadastrar():
     proximo_id += 1
     return redirect(url_for('index'))
 
+# --- ROTA: EDIÇÃO ---
 @app.route('/editar/<int:id>', methods=['GET', 'POST'])
 def editar(id):
     registro = next((r for r in registros if r['id'] == id), None)
@@ -61,6 +69,7 @@ def editar(id):
 
     return render_template('editar.html', registro=registro)
 
+# --- ROTA: EXCLUSÃO ---
 @app.route('/deletar/<int:id>')
 def deletar(id):
     global registros
